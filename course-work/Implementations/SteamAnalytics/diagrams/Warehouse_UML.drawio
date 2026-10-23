@@ -1,0 +1,140 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="steamdw" name="Physical DW - UML">
+    <mxGraphModel dx="3539" dy="1754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1450" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DimDate" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;fontSize=13;strokeColor=#475569;fillColor=#dbeafe;fontColor=#18212f;overflow=fill;" value="&lt;b&gt;«table» DimDate&lt;/b&gt;&lt;hr/&gt;DateKey : int {PK}&lt;br/&gt;CalendarDate : date&lt;br/&gt;Year : smallint&lt;br/&gt;Quarter : tinyint&lt;br/&gt;Month : tinyint&lt;br/&gt;MonthName : nvarchar(20)" vertex="1">
+          <mxGeometry height="152" width="255" x="-300" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="DimUser" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;fontSize=13;strokeColor=#475569;fillColor=#dbeafe;fontColor=#18212f;overflow=fill;" value="&lt;b&gt;«table» DimUser&lt;/b&gt;&lt;hr/&gt;UserKey : int {PK}&lt;br/&gt;Username : nvarchar(60)&lt;br/&gt;Country : nvarchar(80)" vertex="1">
+          <mxGeometry height="95" width="255" x="510" y="443" as="geometry" />
+        </mxCell>
+        <mxCell id="DimGame" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;fontSize=13;strokeColor=#475569;fillColor=#dbeafe;fontColor=#18212f;overflow=fill;" value="&lt;b&gt;«table» DimGame&lt;/b&gt;&lt;hr/&gt;GameKey : int {PK}&lt;br/&gt;Title : nvarchar(160)&lt;br/&gt;ReleaseDate : date&lt;br/&gt;CurrentPrice : decimal(12,2)" vertex="1">
+          <mxGeometry height="114" width="255" x="900" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="DimGenre" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;fontSize=13;strokeColor=#475569;fillColor=#dbeafe;fontColor=#18212f;overflow=fill;" value="&lt;b&gt;«table» DimGenre&lt;/b&gt;&lt;hr/&gt;GenreKey : int {PK}&lt;br/&gt;GenreName : nvarchar(80)" vertex="1">
+          <mxGeometry height="76" width="255" x="920" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="DimPaymentMethod" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;fontSize=13;strokeColor=#475569;fillColor=#dbeafe;fontColor=#18212f;overflow=fill;" value="&lt;b&gt;«table» DimPaymentMethod&lt;/b&gt;&lt;hr/&gt;PaymentMethodKey : tinyint {PK}&lt;br/&gt;MethodName : varchar(20)" vertex="1">
+          <mxGeometry height="76" width="255" x="-320" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="DimReviewRating" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;fontSize=13;strokeColor=#475569;fillColor=#dbeafe;fontColor=#18212f;overflow=fill;" value="&lt;b&gt;«table» DimReviewRating&lt;/b&gt;&lt;hr/&gt;RatingKey : tinyint {PK}&lt;br/&gt;RatingLabel : nvarchar(20)" vertex="1">
+          <mxGeometry height="76" width="255" x="470" y="762" as="geometry" />
+        </mxCell>
+        <mxCell id="BridgeGameGenre" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;fontSize=13;strokeColor=#475569;fillColor=#fef3c7;fontColor=#18212f;overflow=fill;" value="&lt;b&gt;«table» BridgeGameGenre&lt;/b&gt;&lt;hr/&gt;GameKey : int {PK, FK}&lt;br/&gt;GenreKey : int {PK, FK}&lt;br/&gt;GenreWeight : decimal(12,6)" vertex="1">
+          <mxGeometry height="95" width="255" x="930" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="FactGameplay" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;fontSize=13;strokeColor=#475569;fillColor=#dcfce7;fontColor=#18212f;overflow=fill;" value="&lt;b&gt;«table» FactGameplay&lt;/b&gt;&lt;hr/&gt;SessionKey : int {PK}&lt;br/&gt;DateKey : int {FK}&lt;br/&gt;UserKey : int {FK}&lt;br/&gt;GameKey : int {FK}&lt;br/&gt;SessionCount : int&lt;br/&gt;DurationMinutes : decimal(12,2)" vertex="1">
+          <mxGeometry height="152" width="270" x="120" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="FactReviews" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;fontSize=13;strokeColor=#475569;fillColor=#dcfce7;fontColor=#18212f;overflow=fill;" value="&lt;b&gt;«table» FactReviews&lt;/b&gt;&lt;hr/&gt;ReviewKey : int {PK}&lt;br/&gt;DateKey : int {FK}&lt;br/&gt;UserKey : int {FK}&lt;br/&gt;GameKey : int {FK}&lt;br/&gt;RatingKey : tinyint {FK}&lt;br/&gt;ReviewCount : int" vertex="1">
+          <mxGeometry height="152" width="270" x="120" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="e0" edge="1" parent="1" source="FactSales" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;exitX=-0.002;exitY=0.326;exitDx=0;exitDy=0;exitPerimeter=0;" target="DimDate" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="40" y="371.9" />
+              <mxPoint x="40" y="280" />
+              <mxPoint x="-192.5" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="FactSales" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" target="DimUser" value="">
+          <mxGeometry relative="1" x="0.3924" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="452.5" />
+              <mxPoint x="460" y="490.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="FactSales" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;" target="DimGame" value="">
+          <mxGeometry relative="1" x="-0.1357" as="geometry">
+            <Array as="points">
+              <mxPoint x="290" y="190" />
+              <mxPoint x="857.5" y="190" />
+              <mxPoint x="857.5" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="FactSales" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" target="DimPaymentMethod" value="">
+          <mxGeometry relative="1" x="-0.1355" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="FactGameplay" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;entryX=0.008;entryY=0.874;entryDx=0;entryDy=0;entryPerimeter=0;" target="DimDate" value="">
+          <mxGeometry relative="1" x="0.6924" as="geometry">
+            <Array as="points">
+              <mxPoint x="-400" y="686" />
+              <mxPoint x="-400" y="402.8" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="FactGameplay" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;" target="DimUser" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="FactSales" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;" target="DimGame" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="327" />
+              <mxPoint x="520" y="327" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="FactReviews" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="DimDate" value="">
+          <mxGeometry relative="1" x="0.0666" as="geometry">
+            <Array as="points">
+              <mxPoint x="-470" y="990" />
+              <mxPoint x="-470" y="308" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="FactReviews" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" target="DimUser" value="">
+          <mxGeometry relative="1" x="-0.012" as="geometry">
+            <Array as="points">
+              <mxPoint x="770" y="976" />
+              <mxPoint x="770" y="580" />
+              <mxPoint x="701.3" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="FactReviews" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="DimGame" value="">
+          <mxGeometry relative="1" x="0.1427" as="geometry">
+            <Array as="points">
+              <mxPoint x="1290" y="1030" />
+              <mxPoint x="1290" y="327" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="FactReviews" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;" target="DimReviewRating" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="642.5" y="930" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="BridgeGameGenre" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="DimGame" value="">
+          <mxGeometry relative="1" x="0.3035" as="geometry">
+            <Array as="points">
+              <mxPoint x="1057.5" y="460" />
+              <mxPoint x="1060" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="BridgeGameGenre" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;" target="DimGenre" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hazKuxuhASFhT0-FbRd4-1" edge="1" parent="1" source="FactGameplay" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERone;startArrow=ERmany;strokeWidth=1.4;strokeColor=#6b7280;" target="FactSales" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="396" as="sourcePoint" />
+            <mxPoint x="168" y="1130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FactSales" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;fontSize=13;strokeColor=#475569;fillColor=#dcfce7;fontColor=#18212f;overflow=fill;" value="&lt;b&gt;«table» FactSales&lt;/b&gt;&lt;hr/&gt;PurchaseItemKey : int {PK}&lt;br/&gt;PurchaseId : int&lt;br/&gt;DateKey : int {FK}&lt;br/&gt;UserKey : int {FK}&lt;br/&gt;GameKey : int {FK}&lt;br/&gt;PaymentMethodKey : tinyint {FK}&lt;br/&gt;UnitsSold : int&lt;br/&gt;Revenue : decimal(12,2)" vertex="1">
+          <mxGeometry height="190" width="270" x="120" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="hazKuxuhASFhT0-FbRd4-2" edge="1" parent="1" source="DimReviewRating" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;curveGeometry=1;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=12;defaultLabelBackgroundColor=gap;startSize=8;endSize=8;" target="DimReviewRating">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
